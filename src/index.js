@@ -8,6 +8,8 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import HomeTemplate from './templates/HomeTemplate/HomeTemplate';
 import Home from './pages/Home/Home';
 import FilmDetail from './pages/FilmDetail/FilmDetail';
@@ -20,6 +22,7 @@ import AdminTemplate from './templates/AdminTemplate/AdminTemplate';
 import ManagerUser from './pages/ManagerUser/ManagerUser';
 import ManagerFilm from './pages/ManagerFilm/ManagerFilm';
 import ManagerCheckout from './pages/ManagerCheckout/ManagerCheckout';
+import SearchFilm from './pages/SearchFilm/SearchFilm';
 
 const router = createBrowserRouter([
   {
@@ -37,6 +40,10 @@ const router = createBrowserRouter([
       {
         path:"/checkout",
         element:<Checkout/>
+      },
+      {
+        path:"/search",
+        element:<SearchFilm/>
       },
     ]
   },
@@ -59,19 +66,19 @@ const router = createBrowserRouter([
     element: <Profile/>,
   },
   {
-    path: "/admin",
+    path: "/",
     element: <AdminTemplate/>,
     children:[
       {
-        path:"/user",
+        path:"admin/user",
         element:<ManagerUser/>
       },
       {
-        path:"/film",
+        path:"admin/film",
         element:<ManagerFilm/>
       },
       {
-        path:"/checkout",
+        path:"admin/checkout",
         element:<ManagerCheckout/>
       }
     ]

@@ -1,0 +1,85 @@
+.film_item{
+    width: 80%;
+    min-height: 250px;
+    height: 285px;
+    position: relative;
+    a{
+        width: 100%;
+        height: 100%;
+        display: block;
+    position: relative;
+    background-position: 50% 50%!important;
+    background-size: cover!important;
+    overflow: hidden;
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.1);
+    box-shadow: 0 1px 2px rgba(0,0,0,.1);
+    
+    .play {
+        opacity: 0;
+        position: absolute;
+        top: 0;
+        z-index: 1;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,.2) url(https://motchilltivi.net/themes/motchill/static/play-circle.svg) center no-repeat;
+        background-color: rgba(0,0,0,.2);
+        -webkit-transition: all ease-out .35s;
+        transition: all ease-out .35s;
+    }
+    &:hover .play, &:hover .play-v {
+        opacity: 1;
+    }
+    .pic-tag-top {
+        top: 5px;
+        left: 0;
+    }
+    .pic-tag {
+        position: absolute;
+        display: inline-block;
+        white-space: normal;
+        text-align: left;
+        line-height: 1.2em;
+        padding: 5px;
+        font-size: 11px;
+        font-weight: 400;
+        color: #fff;
+        background: #a3765d;
+        border-bottom: 2px solid #96674f;
+        border-radius: 0 5px 5px 0;
+        -webkit-box-shadow: 2px 2px 3px 0 rgba(0,0,0,.75);
+        box-shadow: 2px 2px 3px 0 rgba(0,0,0,.75);
+    }
+    .myui-vodlist__detail {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(0,0,0,.7);
+        text-align: center;
+        color: #fff;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        display: inline-block;
+        z-index: 3;
+        width: 100%;
+
+        .title {
+            margin: 10px 0 0;
+            font-size: 15px;
+            font-weight: 700;
+        }
+        .text {
+            min-height: 19px;
+            color: #fff !important;
+            font-size: 12px;
+            margin-bottom: 0;
+            margin-top: 0;
+        }
+    }
+
+
+    }
+
+}
+

@@ -1,0 +1,31 @@
+.navbar-collapse {
+ flex-grow: 0; 
+ gap: 50px;
+ ul{
+    li{
+        a{
+            color: #fff;
+            text-decoration: none;
+            padding-right: 20px;
+            font-weight: 400;
+        }
+    }
+ }
+}
+
+@media screen and (max-width:992px){
+    .navbar-collapse {
+        ul{
+           li{
+               
+                   margin: 10px 0;
+               
+           }
+        }
+       }
+}
+
+.navbar-toggler:focus {
+
+    box-shadow: none;
+}

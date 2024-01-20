@@ -5,7 +5,7 @@ import Footer from '../../components/Footer/Footer'
 
 export default function HomeTemplate() {
   return (
-    <div>
+    <div className=''>
         <Header/>
         <Outlet/>
         <Footer/>
