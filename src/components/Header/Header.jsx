@@ -1,14 +1,17 @@
-import React, { useEffect } from 'react'
+import React, { useEffect,useState } from 'react'
 import './header.scss'
 import { NavLink } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { dangXuatAction, getUserInformationApi } from '../../redux/features/user/userSlice'
+import { getFilmSearchApi } from '../../redux/features/film/filmSlice'
 export default function Header() {
   const {userInformation} = useSelector(state => state.userSlice)
   const dispatch = useDispatch();
   useEffect(()=>{
     dispatch(getUserInformationApi())
   },[])
+
+  const [search,setSearch] = useState()
   console.log("userInformation",userInformation);
   return (
     <div>
@@ -32,8 +35,15 @@ export default function Header() {
             </ul>
             <div className="navbar-nav">
               <div class="input-group">
-                <input type="text" class="form-control" placeholder=""  />
-                  <button class="input-group-text">Search</button>
+                <input type="text" class="form-control" value={search} onChange={(e)=>{
+                  setSearch(e.target.value)
+                }}  placeholder=""  />
+                  <NavLink className="btn btn-secondary"  onClick={()=>{
+                    console.log("name",search);
+                    dispatch(getFilmSearchApi({
+                      name:search
+                    }))
+                  }} to='/search'>Search</NavLink>
               </div>
             </div>
             {

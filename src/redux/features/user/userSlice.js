@@ -17,6 +17,11 @@ const initialState = {
 
   chechOutResult:null,
   chechOutError:null,
+
+  updateSuccess:null,
+  updateFasle:null,
+
+  userCheckoutList:null
 }
 
 export const userSlice = createSlice({
@@ -50,12 +55,21 @@ export const userSlice = createSlice({
     },
     setCheckoutError : (state,action)=>{
       state.chechOutError = action?.payload
-    }
+    },
+    setUpdateSucess : (state,action)=>{
+      state.updateSuccess = action?.payload
+    },
+    setUpdateFalse : (state,action)=>{
+      state.updateFasle = action?.payload
+    },
+    setUserCheckout : (state,action)=>{
+      state.userCheckoutList = action?.payload
+    },
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { setResponseRegister,setErrorRegister,dangNhapAction,getUserInformation,dangXuatAction,setCheckoutResult,setCheckoutError } = userSlice.actions
+export const { setResponseRegister,setErrorRegister,dangNhapAction,getUserInformation,dangXuatAction,setCheckoutResult,setCheckoutError,setUpdateSucess,setUpdateFalse,setUserCheckout } = userSlice.actions
 
 export default userSlice.reducer
 
@@ -98,18 +112,52 @@ export const getUserInformationApi = ()=>{
 }
 
 
-export const checkOutApi = ()=>{
+export const checkOutApi = (data)=>{
   return async (dispatch) =>{
     try {
-      const result = await userService.chechOut()
+      const result = await userService.chechOut(
+        {
+          moneyPay:200000,
+          ...data
+      }
+      )
       if(result.status = 201){
         dispatch(setCheckoutResult(result.data))
+        dispatch(getUserInformationApi())
       }else{
         dispatch(setCheckoutError("Thất bại"))
       }
     } catch (error) {
       console.log(error);
       dispatch(setCheckoutError("Thất bại"))
+    }
+  }
+}
+
+export const updateUserApi = (id,data)=>{
+  return async (dispatch)=>{
+    try {
+      const result = await userService.updateUser(id,data)
+      if(result.status === 200){
+        dispatch(setUpdateSucess(result.data))
+      }else{
+        dispatch(setUpdateFalse("Update false"))
+      }
+    } catch (error) {
+      dispatch(setUpdateFalse("Update false"))
+    }
+  }
+}
+
+export const getUserCheckoutApi = ()=>{
+  return async (dispatch)=>{
+    try {
+      const result = await userService.getUserCheckout()
+      if(result.status === 200){
+        dispatch(setUserCheckout(result.data))
+      }
+    } catch (error) {
+      console.log(error);
     }
   }
 }

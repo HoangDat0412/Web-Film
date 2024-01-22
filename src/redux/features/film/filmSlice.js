@@ -7,7 +7,8 @@ import { filmService } from '../../../services/filmService';
 const initialState = {
     listFilmUser :null,
     filmDetail:null,
-    listFilmAdmin:null
+    listFilmAdmin:null,
+    listFilmSearch:[],
 }
 
 export const filmSlice = createSlice({
@@ -19,13 +20,16 @@ export const filmSlice = createSlice({
     },
     setDetailFilm: (state,action)=>{
       state.filmDetail = action?.payload;
-    }
+    },
+    setListFilmSearch: (state,action)=>{
+      state.listFilmSearch = action?.payload;
+    },
 
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { setListFilm,setDetailFilm } = filmSlice.actions
+export const { setListFilm,setDetailFilm,setListFilmSearch } = filmSlice.actions
 
 export default filmSlice.reducer
 
@@ -50,5 +54,19 @@ export const getDetailFilmApi = (id)=>{
   } catch (error) {
       console.log(error);
   }
+  }
+}
+
+export const getFilmSearchApi = (data)=>{
+  return async (dispatch)=>{
+    try {
+      const result = await filmService.getSearchFilm(data)
+      console.log("result",result);
+      if(result.status === 200){
+        dispatch(setListFilmSearch(result?.data))
+      }
+    } catch (error) {
+      console.log(data);
+    }
   }
 }

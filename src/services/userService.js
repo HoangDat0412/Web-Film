@@ -14,8 +14,14 @@ export class UserService extends baseService {
     getUserInformation = ()=>{
         return this.get("/user/information")
     };
-    chechOut = ()=>{
-        return this.post("/checkout/create",{moneyPay:200000})
+    chechOut = (data)=>{
+        return this.post("/checkout/create",data)
+    };
+    updateUser = (id,data)=>{
+        return this.post(`/user/update/${id}`,data)
+    };
+    getUserCheckout = ()=>{
+        return this.get(`/checkout`)
     }
     
 //   layThongTinNguoiDung = () => {

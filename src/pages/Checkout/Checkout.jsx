@@ -22,7 +22,7 @@ export default function Checkout() {
     }),
     onSubmit: values => {
       console.log("values",values);
-      dispatch(checkOutApi())
+      dispatch(checkOutApi(values))
       if(chechOutResult){
         Swal.fire({
           title: "Bạn đã checkout thành công",

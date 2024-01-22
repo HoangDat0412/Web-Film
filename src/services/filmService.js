@@ -11,6 +11,9 @@ export class FilmService extends baseService {
     getFilmDetail = (id) => {
         return this.get(`/film/detail/${id}`);
     };
+    getSearchFilm = (data) => {
+        return this.post(`/film/search`,data);
+    };
     
     
 //   layThongTinNguoiDung = () => {
