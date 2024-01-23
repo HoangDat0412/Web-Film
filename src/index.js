@@ -23,6 +23,9 @@ import ManagerUser from './pages/ManagerUser/ManagerUser';
 import ManagerFilm from './pages/ManagerFilm/ManagerFilm';
 import ManagerCheckout from './pages/ManagerCheckout/ManagerCheckout';
 import SearchFilm from './pages/SearchFilm/SearchFilm';
+import CreateFilm from './pages/CreateFilm/CreateFilm';
+import UpdateFilm from './pages/UpdateFilm/UpdateFilm';
+import UpdateUser from './pages/UpdateUser/UpdateUser';
 
 const router = createBrowserRouter([
   {
@@ -80,7 +83,19 @@ const router = createBrowserRouter([
       {
         path:"admin/checkout",
         element:<ManagerCheckout/>
-      }
+      },
+      {
+        path:"admin/createfilm",
+        element:<CreateFilm/>
+      },
+      {
+        path:"admin/film/updatefilm/:id",
+        element:<UpdateFilm/>
+      },
+      {
+        path:"admin/user/update/:id",
+        element:<UpdateUser/>
+      },
     ]
   },
 ]);

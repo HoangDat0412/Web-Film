@@ -1,7 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { TOKEN, USER_LOGIN } from '../../../utils/config';
-import { userService } from '../../../services/userService';
-import { filmService } from '../../../services/filmService';
 import { commentService } from '../../../services/commentService';
 
 

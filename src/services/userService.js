@@ -22,6 +22,9 @@ export class UserService extends baseService {
     };
     getUserCheckout = ()=>{
         return this.get(`/checkout`)
+    };
+    getUserFromId = (id)=>{
+        return this.get(`/user/detail/${id}`)
     }
     
 //   layThongTinNguoiDung = () => {

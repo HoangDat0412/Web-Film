@@ -27,9 +27,6 @@ export default function Header() {
                 <NavLink class="nav-link active" aria-current="page" href="#">Home</NavLink>
               </li>
               <li class="nav-item">
-                <NavLink class="nav-link" to='search' href="#">Film Hot</NavLink>
-              </li>
-              <li class="nav-item">
                 <NavLink class="nav-link" to='checkout' href="#">Checkout</NavLink>
               </li>
             </ul>

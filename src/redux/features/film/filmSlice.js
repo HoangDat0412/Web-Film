@@ -9,6 +9,10 @@ const initialState = {
     filmDetail:null,
     listFilmAdmin:null,
     listFilmSearch:[],
+
+    deleteResult:true,
+    updateResult:true,
+    createResult:true
 }
 
 export const filmSlice = createSlice({
@@ -24,12 +28,21 @@ export const filmSlice = createSlice({
     setListFilmSearch: (state,action)=>{
       state.listFilmSearch = action?.payload;
     },
+    setDeleteResult:(state,action)=>{
+      state.deleteResult = action?.payload
+    },
+    setUpdateResult : (state,action)=>{
+      state.updateResult = action?.payload
+    },
+    setCreateResult : (state,action)=>{
+      state.createResult = action?.payload
+    }
 
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { setListFilm,setDetailFilm,setListFilmSearch } = filmSlice.actions
+export const { setListFilm,setDetailFilm,setListFilmSearch ,setDeleteResult,setUpdateResult,setCreateResult} = filmSlice.actions
 
 export default filmSlice.reducer
 
@@ -70,3 +83,55 @@ export const getFilmSearchApi = (data)=>{
     }
   }
 }
+
+
+export const deleteFilmApi = (id)=>{
+  return async (dispatch)=>{
+    try {
+      const result = await filmService.deleteFilm(id)
+      if(result?.status === 200){
+        dispatch(setDeleteResult(true))
+        dispatch(getListFilmUserApi())
+      }else{
+        dispatch(setDeleteResult(false))
+      }
+    } catch (error) {
+      console.log(error);
+      dispatch(setDeleteResult(false))
+    }
+  }
+}
+
+
+export const updateFilmApi = (id,data)=>{
+  return async (dispatch)=>{
+    try {
+      const result = await filmService.updateFilm(id,data)
+      if(result?.status === 200){
+        dispatch(setUpdateResult(true))
+        dispatch(getDetailFilmApi(id))
+      }
+    } catch (error) {
+      console.log(error);
+      dispatch(setUpdateResult(false))
+    }
+  }
+}
+
+
+export const createFilmApi = (data)=>{
+  return async (dispatch)=>{
+
+    try {
+      const result = await filmService.createFilm(data)
+      if(result?.status === 201){
+        dispatch(setCreateResult(true))
+      }else{
+        dispatch(setCreateResult(false))
+      }
+    } catch (error) {
+      dispatch(setCreateResult(false))
+    }
+  }
+}
+

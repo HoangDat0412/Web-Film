@@ -59,11 +59,11 @@ export default function Register() {
               <input
                 id="userName"
                 name="userName"
-                className="form-control"
-                type="text"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={formik.values.userName}
+                className="form-control"
+                type="text"
               />
               {formik.touched.userName && formik.errors.userName ? (
                 <div style={{ color: "red" }}>{formik.errors.userName}</div>

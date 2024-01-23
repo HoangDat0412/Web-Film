@@ -20,6 +20,7 @@ export default function FilmDetail() {
   const { filmDetail, listFilmUser } = useSelector(state => state.filmSlice);
   const { userInformation } = useSelector(state => state.userSlice);
   const { totalPoint, yourPoint } = useSelector(state => state.rateSlice)
+  
   useEffect(() => {
     if (userInformation?.userType === "USER") {
       Swal.fire({

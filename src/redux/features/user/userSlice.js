@@ -21,7 +21,11 @@ const initialState = {
   updateSuccess:null,
   updateFasle:null,
 
-  userCheckoutList:null
+  userCheckoutList:null,
+
+
+  userUpdate:{},
+  userUpdateResult:true,
 }
 
 export const userSlice = createSlice({
@@ -65,11 +69,17 @@ export const userSlice = createSlice({
     setUserCheckout : (state,action)=>{
       state.userCheckoutList = action?.payload
     },
+    setUserUpdate : (state,action)=>{
+      state.userUpdate = action?.payload
+    },
+    setUserList : (state,action)=>{
+      state.userList = action?.payload
+    }
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { setResponseRegister,setErrorRegister,dangNhapAction,getUserInformation,dangXuatAction,setCheckoutResult,setCheckoutError,setUpdateSucess,setUpdateFalse,setUserCheckout } = userSlice.actions
+export const { setResponseRegister,setErrorRegister,dangNhapAction,getUserInformation,dangXuatAction,setCheckoutResult,setCheckoutError,setUpdateSucess,setUpdateFalse,setUserCheckout,setUserUpdate,setUserList } = userSlice.actions
 
 export default userSlice.reducer
 
@@ -155,6 +165,42 @@ export const getUserCheckoutApi = ()=>{
       const result = await userService.getUserCheckout()
       if(result.status === 200){
         dispatch(setUserCheckout(result.data))
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+}
+
+
+export const getUserFromIdApi = (id)=>{
+  return async (dispatch)=>{
+    try {
+      const result = await userService.getUserFromId(id)
+      dispatch(setUserUpdate(result.data))
+    } catch (error) {
+      console.log(error);
+    }
+  }
+}
+
+export const getListUser = ()=>{
+  return async (dispatch)=>{
+    try {
+      const result = await userService.get(`/user`);
+      dispatch(setUserList(result?.data))
+    } catch (error) {
+      console.log(error);
+    }
+  }
+}
+
+export const deleteUserApi = (id)=>{
+  return async (dispatch)=>{
+    try {
+      const result = await userService.delete(`/user/${id}`)
+      if(result?.status === 200){
+        dispatch(getListUser())
       }
     } catch (error) {
       console.log(error);
